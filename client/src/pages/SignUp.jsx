@@ -1,7 +1,14 @@
 import { Link } from "react-router-dom";
 import { Button,Label, TextInput } from "flowbite-react";
+import { useState } from "react";
 
 const SignUp = () => {
+  const [formData,setFormData] = useState({})
+
+  function handleChange(e){
+setFormData({...formData,[e.target.id]:[e.target.value]})
+  }
+  console.log(formData)
   return (
     <div className="min-h-screen mt-20">
       <div className="flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center gap-5">
@@ -33,28 +40,28 @@ const SignUp = () => {
                 id="username"
                 type="text"
                 placeholder="username"
-                required
+                required onChange={handleChange} 
               />
             </div>
             <div>
             <div className="">
               <Label htmlFor="email" value="Your email" />
             </div>
-            <TextInput id="email" type="email" required placeholder="email" />
+            <TextInput id="email" type="email" required placeholder="email" onChange={handleChange}  />
           </div>
             <div>
               <div className="">
                 <Label htmlFor="password" value="Your password" />
               </div>
-              <TextInput id="password" type="password" required placeholder="password" />
+              <TextInput id="password" type="password" required placeholder="password" onChange={handleChange}  />
             </div>
             <Button className="mt-3" gradientDuoTone='purpleToPink' type="submit">Sign Up</Button>
            
       
           </form>
-          <div>
-          <span>Have an account?</span>
-          <Link to="/sign-in">
+          <div className="flex gap-2 text-sm mt-5">
+          <span className="font-semibold">Have an account?</span>
+          <Link to="/sign-in" className="text-cyan-500">
           Sign In
           </Link>
           </div>
